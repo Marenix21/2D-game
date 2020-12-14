@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.04996200278401375,"y":4.119609832763672,"z":-0.021381862461566926},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1.0823755264282227,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":false,"showMaterialUpdate":true,"showSkybox":false,"showFlares":false,"showImageEffects":false,"showParticleSystems":false},"in2DMode":true,"pivot":{"x":532.4953002929688,"y":303.4465026855469,"z":-46.391117095947269},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":347.3736572265625,"orthographic":true}
+>>>>>>> f2f2901 (added start menu and player death)

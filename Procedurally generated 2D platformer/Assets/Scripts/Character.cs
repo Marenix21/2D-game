@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Character : MonoBehaviour
@@ -46,8 +47,13 @@ public class Character : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
             }
+<<<<<<< HEAD
         } 
         velocity.y += Physics2D.gravity.y * Time.deltaTime * gravity;
+=======
+        }
+        velocity.y += Physics2D.gravity.y * Time.deltaTime * 1.5f;
+>>>>>>> f2f2901 (added start menu and player death)
 
         float moveInput = Input.GetAxisRaw("Horizontal");
         float acceleration = grounded ? walkAcceleration : airAcceleration;
@@ -68,6 +74,10 @@ public class Character : MonoBehaviour
         {
             if (hit == boxCollider)
                 continue;
+
+            if(hit.tag == "Finish") {
+                SceneManager.LoadScene(0);
+            }
 
             ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
