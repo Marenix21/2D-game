@@ -213,7 +213,6 @@ MonoBehaviour:
   groundDeceleration: 70
   airDeceleration: 5
   jumpHeight: 2
-<<<<<<< HEAD
   gravity: 2
 --- !u!1001 &6380669119257077919
 PrefabInstance:
@@ -290,24 +289,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6380669119257077919}
   m_PrefabAsset: {fileID: 0}
-=======
---- !u!114 &1882798054741923153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3919500178651582491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7125ceab86ca38d41af527fcae53b60c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPoints: 1
-  respawnHealthPoints: 1
-  numberOfLives: 1
-  isAlive: 1
-  explosionPrefab: {fileID: 0}
-  onLivesGone: 1
-  LevelToLoad: 
->>>>>>> f2f2901 (added start menu and player death)
