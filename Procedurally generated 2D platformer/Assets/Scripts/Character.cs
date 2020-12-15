@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Character : MonoBehaviour
@@ -32,6 +33,8 @@ public class Character : MonoBehaviour
 
     private Vector2 velocity;
 
+    public int score = 0;
+
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -55,6 +58,7 @@ public class Character : MonoBehaviour
         if (moveInput != 0)
         {
             velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            score += 1;
         }
         else
         {
@@ -69,6 +73,10 @@ public class Character : MonoBehaviour
             if (hit == boxCollider)
                 continue;
 
+            if(hit.tag == "Finish") {
+                this.endGame();
+            }
+
             ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
             if (colliderDistance.isOverlapped)
@@ -80,6 +88,12 @@ public class Character : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void endGame() {
+        Debug.Log("Dead.");
+        SaveSystem.SaveScore(this);
+        SceneManager.LoadScene(0);
     }
 }
 
