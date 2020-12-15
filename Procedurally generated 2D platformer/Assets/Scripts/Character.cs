@@ -49,13 +49,8 @@ public class Character : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
             }
-<<<<<<< HEAD
         } 
         velocity.y += Physics2D.gravity.y * Time.deltaTime * gravity;
-=======
-        }
-        velocity.y += Physics2D.gravity.y * Time.deltaTime * 1.5f;
->>>>>>> f2f2901 (added start menu and player death)
 
         float moveInput = Input.GetAxisRaw("Horizontal");
         float acceleration = grounded ? walkAcceleration : airAcceleration;
