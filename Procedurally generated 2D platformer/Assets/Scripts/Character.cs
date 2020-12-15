@@ -19,8 +19,14 @@ public class Character : MonoBehaviour
     [SerializeField, Tooltip("Deceleration applied when character is grounded and not attempting to move.")]
     float groundDeceleration = 70;
 
-    [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
+    [SerializeField, Tooltip("Deceleration applied when character is in the air and.")]
+    float airDeceleration = 5;
+
+    [SerializeField, Tooltip("Max height the character will jump regardless of gravity.")]
     float jumpHeight = 2;
+
+    [SerializeField, Tooltip("Define gravity.")]
+    float gravity = 2;
 
     private BoxCollider2D boxCollider;
 
@@ -40,12 +46,12 @@ public class Character : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
             }
-        }
-        velocity.y += Physics2D.gravity.y * Time.deltaTime;
+        } 
+        velocity.y += Physics2D.gravity.y * Time.deltaTime * gravity;
 
         float moveInput = Input.GetAxisRaw("Horizontal");
         float acceleration = grounded ? walkAcceleration : airAcceleration;
-        float deceleration = grounded ? groundDeceleration : 0;
+        float deceleration = grounded ? groundDeceleration : airDeceleration;
         if (moveInput != 0)
         {
             velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
