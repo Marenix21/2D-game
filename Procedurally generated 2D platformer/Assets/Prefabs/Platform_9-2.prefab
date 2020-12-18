@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4645490762390584751}
   m_Layer: 0
   m_Name: Death
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -678,7 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8368191053131539341}
   m_Layer: 0
-  m_Name: Platform_4-9-2
+  m_Name: Platform_9-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

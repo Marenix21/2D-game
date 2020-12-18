@@ -13,8 +13,6 @@ public class Data
             highscore = player.score;
             last_score = player.score;
         } else {
-            Debug.Log("Loaded a score! " + data.highscore.ToString());
-            Debug.Log("Player got " + player.score.ToString());
             if(player.score > data.highscore) highscore = player.score;
             else highscore = data.highscore;
             last_score = player.score;
