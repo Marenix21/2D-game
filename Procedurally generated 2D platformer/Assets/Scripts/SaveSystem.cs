@@ -10,8 +10,6 @@ public static class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
         Data data = new Data(player);
         using (var stream = File.Open(path, FileMode.OpenOrCreate)) {
-            Debug.Log("Saving HS " + data.highscore.ToString());
-            Debug.Log("Saving S " + data.last_score.ToString());
             formatter.Serialize(stream, data);
         }
     }
@@ -22,8 +20,6 @@ public static class SaveSystem
             Data data;
             using (var stream = File.Open(path, FileMode.Open)) {
                 data = formatter.Deserialize(stream) as Data;
-                Debug.Log("Loaded HS " + data.highscore.ToString());
-                Debug.Log("Loaded S " + data.last_score.ToString());
             }
             return data;
         } else {

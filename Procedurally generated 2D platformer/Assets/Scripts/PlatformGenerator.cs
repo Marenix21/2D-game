@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlatformGenerator : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class PlatformGenerator : MonoBehaviour
     
     private Vector3 lastEndPosition;
     private float distanceFromEnd = 25f;
+    private float distanceToDelete = 50f;
+    private float distanceToDie = 50f;
 
     // Start is called before the first frame update
     void Start()
     {   
-        lastEndPosition = new Vector3(-3, 0, 0);
-        SpawnPlatform();
+        lastEndPosition = new Vector3(0, 0, 0);
+        SpawnFirst();
     }
 
     // Update is called once per frame
@@ -35,25 +38,48 @@ public class PlatformGenerator : MonoBehaviour
         }
         foreach (GameObject tmp in UnityEngine.Object.FindObjectsOfType<GameObject>()) 
         {
-            if (Vector3.Distance(playerCharacter.transform.position, tmp.transform.position) > 50)
+            if (tmp.transform.position[1] - playerCharacter.transform.position[1] > distanceToDie)
             {
-                //Debug.Log(tmp.GetComponent<Renderer>().bounds.size);
+                if (tmp.GetComponent<RectTransform>() == null)
+                {
+                    endGame();
+                }
+            }
+            if (playerCharacter.transform.position[0] - tmp.transform.position[0] > distanceToDelete)
+            {
                 DestroyImmediate(tmp, true);
             }
         }
     }
 
     void SpawnPlatform() {
-        float x = UnityEngine.Random.Range(-1.0f, 2.0f), y = UnityEngine.Random.Range(-3.0f, 2.0f);
+        float x = UnityEngine.Random.Range(1.0f, 4.0f), y = UnityEngine.Random.Range(-3.0f, 2.0f);
         int i = UnityEngine.Random.Range(0, _platforms.Length);
         Transform platform = Instantiate(_platforms[i].transform, lastEndPosition + new Vector3(x, y, 0), Quaternion.identity);
         lastEndPosition = platform.Find("EndPosition").position;
         if(UnityEngine.Random.Range(0.0f, 1.0f) * 100 < probabilityToSpawn)
         {
             i = UnityEngine.Random.Range(0, _enemies.Length);
-            x = UnityEngine.Random.Range(1.0f, platform.Find("Sprite").GetComponent<Renderer>().bounds.size[0] - 1.0f);
-            Transform enemy = Instantiate(_enemies[i].transform, lastEndPosition - new Vector3(x, 0, 0), Quaternion.identity);
+            float enemySize = _enemies[i].transform.GetComponent<Renderer>().bounds.size[0];
+            float platformSize = platform.Find("Sprite").GetComponent<BoxCollider2D>().bounds.size[0];
+            if (platformSize > 3 * enemySize)
+            {
+                x = UnityEngine.Random.Range(enemySize, platformSize -  2 * enemySize);
+                Transform enemy = Instantiate(_enemies[i].transform, lastEndPosition - new Vector3(x, 0, -0.5f), Quaternion.identity);
+            }
         }
-        Debug.Log(platform.Find("Sprite").GetComponent<Renderer>().bounds.size[0]);
+    }
+
+    void SpawnFirst()
+    {
+        int i = UnityEngine.Random.Range(0, _platforms.Length);
+        Transform platform = Instantiate(_platforms[i].transform, lastEndPosition + new Vector3(-1, 0, 0), Quaternion.identity);
+        lastEndPosition = platform.Find("EndPosition").position;
+    }
+    
+    private void endGame()
+    {
+        SaveSystem.SaveScore(playerCharacter.GetComponent<Character>());
+        SceneManager.LoadScene("PlayAgain");
     }
 }

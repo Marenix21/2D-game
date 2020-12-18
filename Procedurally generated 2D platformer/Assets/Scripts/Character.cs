@@ -58,7 +58,7 @@ public class Character : MonoBehaviour
         if (moveInput != 0)
         {
             velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
-            score += 1;
+            score = Mathf.Max(score, (int)GameObject.Find("Character").transform.position[0]);
         }
         else
         {
@@ -91,9 +91,8 @@ public class Character : MonoBehaviour
     }
 
     private void endGame() {
-        Debug.Log("Dead.");
         SaveSystem.SaveScore(this);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("PlayAgain");
     }
 }
 

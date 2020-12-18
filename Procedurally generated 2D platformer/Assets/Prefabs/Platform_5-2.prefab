@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1611675977139350760}
   m_Layer: 0
-  m_Name: Platform_3-5-2
+  m_Name: Platform_5-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3567988063386624103}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.1, y: 0, z: -1}
+  m_LocalPosition: {x: 4.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7535263238467035649}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 2451086924548158154}
   m_Layer: 0
   m_Name: Death
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
