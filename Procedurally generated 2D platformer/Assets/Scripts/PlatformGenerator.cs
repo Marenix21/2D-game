@@ -17,17 +17,24 @@ public class PlatformGenerator : MonoBehaviour
 
     [SerializeField, Tooltip("The character prefab for player position.")]
     private GameObject playerCharacter;
+
+    [SerializeField, Tooltip("Background prefab.")]
+    private GameObject background;
     
     private Vector3 lastEndPosition;
+    private Vector3 lastEndPositionBackground;
     private float distanceFromEnd = 25f;
     private float distanceToDelete = 50f;
     private float distanceToDie = 50f;
-
+    private float backgroundX = 49f;
     // Start is called before the first frame update
     void Start()
     {   
         lastEndPosition = new Vector3(0, 0, 0);
+        lastEndPositionBackground = new Vector3(0, 0, 10);
         SpawnFirst();
+        SpawnFirstBackground();
+
     }
 
     // Update is called once per frame
@@ -35,6 +42,10 @@ public class PlatformGenerator : MonoBehaviour
     {
         if(Vector3.Distance(playerCharacter.transform.position, lastEndPosition) < distanceFromEnd) {
             SpawnPlatform();
+        }
+        if(lastEndPositionBackground[0] - playerCharacter.transform.position[0] < distanceToDelete)
+        {
+            SpawnBackground();
         }
         foreach (GameObject tmp in UnityEngine.Object.FindObjectsOfType<GameObject>()) 
         {
@@ -47,6 +58,10 @@ public class PlatformGenerator : MonoBehaviour
             }
             if (playerCharacter.transform.position[0] - tmp.transform.position[0] > distanceToDelete)
             {
+                if(tmp.name == "Hills" || tmp.name == "Background" || tmp.name == "Background(Clone)" && playerCharacter.transform.position[0] - tmp.transform.position[0] < distanceToDelete * 2)
+                {
+                    continue;
+                }
                 DestroyImmediate(tmp, true);
             }
         }
@@ -68,6 +83,19 @@ public class PlatformGenerator : MonoBehaviour
                 Transform enemy = Instantiate(_enemies[i].transform, lastEndPosition - new Vector3(x, 0, -0.5f), Quaternion.identity);
             }
         }
+    }
+
+    void SpawnBackground()
+    {
+        Transform backgroundTmp = Instantiate(background.transform, lastEndPositionBackground + new Vector3(backgroundX, 0, 0), Quaternion.identity);
+        lastEndPositionBackground = backgroundTmp.Find("EndPosition").position;
+        Debug.Log("Spawning at: " + lastEndPositionBackground);
+    }
+
+    void SpawnFirstBackground()
+    {
+        Transform backgroundTmp = Instantiate(background.transform, lastEndPositionBackground + new Vector3(0, 0, 0), Quaternion.identity);
+        lastEndPositionBackground = backgroundTmp.Find("EndPosition").position;
     }
 
     void SpawnFirst()
