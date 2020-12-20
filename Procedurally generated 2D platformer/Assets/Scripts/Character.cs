@@ -58,7 +58,7 @@ public class Character : MonoBehaviour
         if (moveInput != 0)
         {
             velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
-            score = Mathf.Max(score, (int)GameObject.Find("Character").transform.position[0]);
+            score = Mathf.Max(score, (int)Mathf.FloorToInt(GameObject.Find("Character").transform.position[0]));
         }
         else
         {
