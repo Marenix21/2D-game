@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2656097896732731296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2656097896732731294}
+  - component: {fileID: 2656097896732731295}
+  m_Layer: 0
+  m_Name: PlatformGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2656097896732731294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2656097896732731296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.455235, y: 1.2978375, z: -2.1911874}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2656097896732731295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2656097896732731296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2e1f2f66f48df4f81a73f8772eb39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _platforms:
+  - {fileID: 8345040369925217126, guid: 3bb1dca22601ab54992b69153abfd024, type: 3}
+  - {fileID: 3574842534161910768, guid: 9538c1e0d9c2d47458826b349433139b, type: 3}
+  - {fileID: 1692509921030475664, guid: d8ae7f99a7a4403418cbf2b5cf983e0f, type: 3}
+  - {fileID: 4186246111083213839, guid: 15ee00dd15a23c448888a13f0119789a, type: 3}
+  - {fileID: 3481096310831357090, guid: 239ddf7f6c0a19a44ab97376d1ae5c1f, type: 3}
+  - {fileID: 4610599284467555484, guid: 4580eb518fdf1ff42a384e95ccc3839b, type: 3}
+  - {fileID: 5872672667659860600, guid: 305450debe9fe114cbda61802e2b2891, type: 3}
+  - {fileID: 5923162634578596807, guid: 06a2c65aa088f8144995711e047337b7, type: 3}
+  - {fileID: 4466783710369234964, guid: e736e6799c9cfa34abdc265afb14d793, type: 3}
+  probabilityToSpawn: 30
+  _enemies:
+  - {fileID: 6796232172304138281, guid: 73244f512ee37544a9609f82925dc808, type: 3}
+  - {fileID: 8127073286010649783, guid: 77a7e33ea0c806e4e99d5d166dffff94, type: 3}
+  playerCharacter: {fileID: 3919500178651582491, guid: 43d6e36ba459bbc42ab31e85fbc26844,
+    type: 3}
