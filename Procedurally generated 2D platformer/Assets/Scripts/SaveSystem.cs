@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class SaveSystem
 {
@@ -25,5 +26,10 @@ public static class SaveSystem
         } else {
             return null;
         }
+    }
+
+    public static void endGame(Character player) {
+        SaveSystem.SaveScore(player);
+        SceneManager.LoadScene("Start");
     }
 }
