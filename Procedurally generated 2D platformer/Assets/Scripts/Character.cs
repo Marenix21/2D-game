@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Character : MonoBehaviour
@@ -74,7 +73,7 @@ public class Character : MonoBehaviour
                 continue;
 
             if(hit.tag == "Finish") {
-                this.endGame();
+                SaveSystem.endGame(this);
             }
 
             ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
@@ -88,11 +87,6 @@ public class Character : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void endGame() {
-        SaveSystem.SaveScore(this);
-        SceneManager.LoadScene("PlayAgain");
     }
 }
 

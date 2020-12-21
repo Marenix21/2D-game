@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.SceneManagement;
 
 public class PlatformGenerator : MonoBehaviour
 {
@@ -53,7 +52,7 @@ public class PlatformGenerator : MonoBehaviour
             {
                 if (tmp.GetComponent<RectTransform>() == null)
                 {
-                    endGame();
+                    SaveSystem.endGame(playerCharacter.GetComponent<Character>());
                 }
             }
             if (playerCharacter.transform.position[0] - tmp.transform.position[0] > distanceToDelete)
@@ -103,11 +102,5 @@ public class PlatformGenerator : MonoBehaviour
         int i = UnityEngine.Random.Range(0, _platforms.Length);
         Transform platform = Instantiate(_platforms[i].transform, lastEndPosition + new Vector3(-1, 0, 0), Quaternion.identity);
         lastEndPosition = platform.Find("EndPosition").position;
-    }
-    
-    private void endGame()
-    {
-        SaveSystem.SaveScore(playerCharacter.GetComponent<Character>());
-        SceneManager.LoadScene("PlayAgain");
     }
 }
