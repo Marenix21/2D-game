@@ -59,3 +59,8 @@ MonoBehaviour:
   - {fileID: 8127073286010649783, guid: 77a7e33ea0c806e4e99d5d166dffff94, type: 3}
   playerCharacter: {fileID: 3919500178651582491, guid: 43d6e36ba459bbc42ab31e85fbc26844,
     type: 3}
+  background: {fileID: 0}
+  powerUpProbability: 100
+  _powerUps:
+  - {fileID: 3178706958280001910, guid: b9e2287a2aff5dc4da7a9c18ab55216c, type: 3}
+  - {fileID: 8309021737040911169, guid: bf220c15e89142d4c824231ee90eb9d2, type: 3}

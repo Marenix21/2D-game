@@ -8,7 +8,7 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField, Tooltip("Prefabs for randomly generated platforms.")]
     private GameObject[] _platforms;
 
-    [SerializeField, Tooltip("Probability of enemy spawning on a platform.")]
+    [SerializeField, Tooltip("Probability of enemy spawning on a platform [0-100].")]
     private int probabilityToSpawn;
 
     [SerializeField, Tooltip("Prefabs for randomly generated enemies.")]
@@ -19,6 +19,14 @@ public class PlatformGenerator : MonoBehaviour
 
     [SerializeField, Tooltip("Background prefab.")]
     private GameObject background;
+
+    [SerializeField, Tooltip("Probability of spawning a power-up on a platform [0-100].")]
+    private int powerUpProbability;
+
+    [SerializeField, Tooltip("Prefabs for randomly generated power-ups.")]
+    private GameObject[] _powerUps;
+
+
     
     private Vector3 lastEndPosition;
     private Vector3 lastEndPositionBackground;
@@ -57,7 +65,7 @@ public class PlatformGenerator : MonoBehaviour
             }
             if (playerCharacter.transform.position[0] - tmp.transform.position[0] > distanceToDelete)
             {
-                if(tmp.name == "Hills" || tmp.name == "Background" || tmp.name == "Background(Clone)" && playerCharacter.transform.position[0] - tmp.transform.position[0] < distanceToDelete * 2)
+                if(tmp.tag == "DoNotDelete" || tmp.name == "Hills" || tmp.name == "Background" || tmp.name == "Background(Clone)" && playerCharacter.transform.position[0] - tmp.transform.position[0] < distanceToDelete * 2)
                 {
                     continue;
                 }
@@ -71,6 +79,8 @@ public class PlatformGenerator : MonoBehaviour
         int i = UnityEngine.Random.Range(0, _platforms.Length);
         Transform platform = Instantiate(_platforms[i].transform, lastEndPosition + new Vector3(x, y, 0), Quaternion.identity);
         lastEndPosition = platform.Find("EndPosition").position;
+        bool enemySpawned = false;
+
         if(UnityEngine.Random.Range(0.0f, 1.0f) * 100 < probabilityToSpawn)
         {
             i = UnityEngine.Random.Range(0, _enemies.Length);
@@ -78,9 +88,26 @@ public class PlatformGenerator : MonoBehaviour
             float platformSize = platform.Find("Sprite").GetComponent<BoxCollider2D>().bounds.size[0];
             if (platformSize > 3 * enemySize)
             {
+                enemySpawned = true;
                 x = UnityEngine.Random.Range(enemySize, platformSize -  2 * enemySize);
                 Transform enemy = Instantiate(_enemies[i].transform, lastEndPosition - new Vector3(x, 0, -0.5f), Quaternion.identity);
             }
+        }
+
+        if(UnityEngine.Random.Range(0.0f, 1.0f) * 100 < powerUpProbability)
+        {
+            float platformSize = platform.Find("Sprite").GetComponent<BoxCollider2D>().bounds.size[0];
+            i = UnityEngine.Random.Range(0, _powerUps.Length);
+            x = UnityEngine.Random.Range(0, platformSize);
+            if(enemySpawned)
+            {
+                y = UnityEngine.Random.Range(2.5f, 3.5f);
+            }
+            else
+            {
+                y = UnityEngine.Random.Range(0.5f, 3.5f);
+            }
+            Transform powerUp = Instantiate(_powerUps[i].transform, lastEndPosition - new Vector3(x, -y, 0), Quaternion.identity);
         }
     }
 
